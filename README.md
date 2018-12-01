@@ -11,7 +11,9 @@ Installation
 
 * Gem:
 
-    $ gem install curler
+  ```
+  $ gem install curler
+  ```
 
 * Bundler/Gemfile:
 
