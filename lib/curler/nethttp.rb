@@ -5,7 +5,7 @@ class Net::HTTP
 
   def self.curl_log(path)
     if path.is_a? String
-      @@logfile = File.open(path, 'wt')
+      @@logfile = File.open(path, 'at')
     elsif path.is_a? IO
       @@logfile = path
     elsif path.nil?
@@ -46,7 +46,7 @@ class Net::HTTP
           url += ":#{port}"
         end
       end
-      url += "/#{req.path}"
+      url += "#{req.path}"
 
       method = "-X #{req.method.upcase}"
 
@@ -63,7 +63,7 @@ class Net::HTTP
 
       output = ['curl', method, headers.join(' '), data, url].reject(&:empty?)
 
-      @@logfile << output.join(' ')
+      @@logfile << (output.join(' ') + "\n")
     end
 
     return res
